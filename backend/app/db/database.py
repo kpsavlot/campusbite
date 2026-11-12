@@ -1,5 +1,5 @@
 from app.core.config import settings
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker, declarative_base
 
 is_sqlite = settings.DATABASE_URL.startswith("sqlite")
@@ -20,6 +20,8 @@ Base = declarative_base()
 def get_db():
     db = SessionLocal()
     try:
+        if is_sqlite:
+            db.execute(text("PRAGMA foreign_keys=ON"))
         yield db
     finally:
         db.close()

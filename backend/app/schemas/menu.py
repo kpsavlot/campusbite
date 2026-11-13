@@ -25,7 +25,7 @@ class MenuItemOut(BaseModel):
 class MenuItemUpdate(BaseModel):
     name: Optional[str] = Field(default=None, min_length=1, max_length=150)
     description: Optional[str] = None
-    price: Optional[int] = Field(default=None, gt=0)
+    price: Optional[float] = Field(default=None, gt=0)
     category: Optional[str] = Field(default=None, max_length=100)
     is_available: Optional[bool] = None
 

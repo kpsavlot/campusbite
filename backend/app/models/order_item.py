@@ -15,3 +15,8 @@ class OrderItem(Base):
 
     order = relationship("Order", back_populates="items")
     menu_item = relationship("MenuItem")
+
+    # To fetch name for the OrderItemOut.name
+    @property
+    def name(self):
+        return self.menu_item.name

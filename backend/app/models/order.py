@@ -31,3 +31,8 @@ class Order(Base):
     items = relationship("OrderItem", back_populates="order", cascade="all, delete-orphan")
     ledger_entries = relationship("PaymentLedger", back_populates="order", cascade="all, delete-orphan")
     review = relationship("Review", back_populates="order", uselist=False)
+
+    # to fetch restaurant for OrderOut.restaurant_name
+    @property
+    def restaurant_name(self):
+        return self.restaurant.name
